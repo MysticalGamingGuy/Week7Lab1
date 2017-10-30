@@ -4,7 +4,8 @@
 
 <h3> <span style="text-transform: capitalize">${fn:toLowerCase(type)}</span> Note </h3>
 <form action="notes" method="POST">
-    Contents: <input type="text" name="contents"><br>
+    Contents: <input type="text" name="contents" value="${selectedNote == null? '': selectedNote.contents}"><br>
     <input type="hidden" name="action" value="${type}">
+    <input type="hidden" name="selectednoteid" value="${selectedNote == null? '': selectedNote.noteid}">
     <input type="submit" value="Submit">
 </form>

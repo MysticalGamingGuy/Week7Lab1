@@ -12,7 +12,3 @@ CREATE TABLE Note(
     PRIMARY KEY (noteid)
 );
 
-INSERT INTO Note values(1, SYSDATE(), 'Hello World!!!');
-INSERT INTO Note values(2, SYSDATE(), 'asdasd');
-INSERT INTO Note values(3, SYSDATE(), 'Hsdfsdfsdf');
-INSERT INTO Note values(4, SYSDATE(), 'ertertert');

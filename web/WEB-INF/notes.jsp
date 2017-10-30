@@ -9,38 +9,47 @@
     </head>
     <body>
         <h1>Manage Notes</h1>
-        <h2>Notes</h2>
+        
+        <c:choose>
+            <c:when test="${notes.size() > 0 }">
+                <h2>Notes</h2>
+                <table>
+                    <tr>
+                        <th>Note ID</th>
+                        <th>Date Created</th>
+                        <th>Contents</th>
+                        <th>Delete Note</th>
+                        <th>Select Note</th>
+                    </tr>
+                    <c:forEach var="note" items="${notes}">
+                        <tr>
+                            <td>${note.noteid}</td>
+                            <td>${note.datecreated}</td>
+                            <td>${note.contents}</td>
+                            <td>
+                                <form action="notes" method="post" >
+                                    <input type="submit" value="Delete">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="selectednoteid" value="${note.noteid}">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="notes" method="post">
+                                    <input type="submit" value="Edit">
+                                    <input type="hidden" name="action" value="edit">
+                                    <input type="hidden" name="selectednoteid" value="${note.noteid}">
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:when>
+            <c:otherwise>
+                <p>There are currently no notes in the database</p>
+            </c:otherwise>
+        </c:choose>
+        
         <p>${errorMessage}</p>
-        <table>
-            <tr>
-                <th>Note ID</th>
-                <th>Date Created</th>
-                <th>Contents</th>
-                <th>Delete Note</th>
-                <th>Select Note</th>
-            </tr>
-            <c:forEach var="note" items="${notes}">
-                <tr>
-                    <td>${note.noteid}</td>
-                    <td>${note.datecreated}</td>
-                    <td>${note.contents}</td>
-                    <td>
-                        <form action="notes" method="post" >
-                            <input type="submit" value="Delete">
-                            <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="selectednoteid" value="${note.noteid}">
-                        </form>
-                    </td>
-                    <td>
-                        <form action="notes" method="post">
-                            <input type="submit" value="Edit">
-                            <input type="hidden" name="action" value="edit">
-                            <input type="hidden" name="selectednoteid" value="${note.noteid}">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
         
         <tags:noteForm type="${selectedNote == null? 'add': 'update'}"/>
  

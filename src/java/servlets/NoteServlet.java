@@ -30,7 +30,7 @@ public class NoteServlet extends HttpServlet {
                     noteService.delete(Integer.parseInt(request.getParameter("selectednoteid")));
                     break;
                 case "update":
-                    noteService.update(contents);
+                    noteService.update(Integer.parseInt(request.getParameter("selectednoteid")),contents);
                     break;
                 case "add":
                     noteService.insert(contents);
